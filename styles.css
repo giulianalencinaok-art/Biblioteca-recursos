@@ -1,320 +1,70 @@
-/* ============================================================
-   Giuliana Lencina — Biblioteca de recursos
-   Estética: editorial cálida y minimalista
-   ============================================================ */
+/* ============================================================================
+   📄  TUS DOCUMENTOS  —  este es el único archivo que necesitás editar.
+   ============================================================================
 
-:root {
-  /* Superficies cálidas */
-  --bg:        #f6f1e9;
-  --bg-soft:   #efe8db;
-  --surface:   #fffdf8;
-  --line:      #e6ddce;
-  --line-soft: #efe7d9;
+   CÓMO AGREGAR UN DOCUMENTO NUEVO:
+   1. Subí tu PDF a la carpeta  docs/   (por ejemplo  docs/mi-guia.pdf)
+   2. Copiá uno de los bloques { ... } de abajo y pegalo en la lista.
+   3. Cambiá los datos:
 
-  /* Tinta */
-  --ink:       #221e18;
-  --ink-soft:  #5a5247;
-  --muted:     #948a79;
+        titulo      → el nombre que se ve en la portada y la tarjeta
+        categoria   → etiqueta corta (ej: "Guía", "Ebook", "Checklist")
+        descripcion → 1 o 2 líneas que explican de qué trata
+        archivo     → la ruta del PDF dentro de docs/  (ej: "docs/mi-guia.pdf")
+        paginas     → cantidad de páginas (texto libre, ej: "12 páginas")
+        tono        → color de la portada: 1, 2, 3 o 4 (probá cuál te gusta)
 
-  /* Acento terracota */
-  --accent:        #bd5d3a;
-  --accent-press:  #a44c2d;
-  --accent-tint:   #f3e0d4;
+   Para BORRAR un documento, simplemente eliminá su bloque { ... }.
+   El orden de la lista es el orden en que aparecen en la web.
+   ============================================================================ */
 
-  /* Tonos de portada (cálidos) */
-  --cover-1: #e7ddc9;
-  --cover-2: #e4dacd;
-  --cover-3: #ecdbcd;
-  --cover-4: #dde2d3;
-
-  --radius:    16px;
-  --radius-sm: 11px;
-  --maxw:      1120px;
-
-  --serif: "Newsreader", Georgia, serif;
-  --sans:  "Hanken Grotesk", system-ui, sans-serif;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-
-body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.55;
-  font-size: 16px;
-}
-
-::selection { background: var(--accent-tint); color: var(--ink); }
-
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
-
-/* ---------------- Header ---------------- */
-.site-header {
-  border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(8px);
-  position: sticky; top: 0; z-index: 20;
-}
-.site-header .wrap {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 68px;
-}
-.brand { display: flex; align-items: baseline; gap: 11px; }
-.brand .mark {
-  font-family: var(--serif);
-  font-size: 21px; font-weight: 500; letter-spacing: -0.01em;
-}
-.brand .mark em { font-style: italic; color: var(--accent); }
-.brand .sub {
-  font-size: 12.5px; color: var(--muted);
-  letter-spacing: 0.02em;
-}
-.header-tag {
-  font-size: 12px; color: var(--ink-soft);
-  text-transform: uppercase; letter-spacing: 0.14em;
-}
-
-/* ---------------- Hero ---------------- */
-.hero { padding: 76px 0 18px; }
-.hero .eyebrow {
-  font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.18em;
-  color: var(--accent); font-weight: 600; margin-bottom: 22px;
-  display: flex; align-items: center; gap: 12px;
-}
-.hero .eyebrow::before {
-  content: ""; width: 34px; height: 1px; background: var(--accent);
-}
-.hero h1 {
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(40px, 6vw, 70px); line-height: 1.04;
-  letter-spacing: -0.02em; max-width: 14ch;
-  text-wrap: balance;
-}
-.hero h1 em { font-style: italic; color: var(--accent); }
-.hero p {
-  margin-top: 26px; max-width: 52ch; font-size: 18px;
-  color: var(--ink-soft); text-wrap: pretty;
-}
-.hero .meta {
-  margin-top: 34px; display: flex; gap: 28px; flex-wrap: wrap;
-  font-size: 13.5px; color: var(--muted);
-}
-.hero .meta b { color: var(--ink); font-weight: 600; }
-
-/* ---------------- Grilla ---------------- */
-.library { padding: 54px 0 90px; }
-.library-bar {
-  display: flex; align-items: baseline; justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 14px; margin-bottom: 38px;
-}
-.library-bar h2 {
-  font-family: var(--serif); font-weight: 500; font-size: 22px;
-  letter-spacing: -0.01em;
-}
-.library-bar .count { font-size: 13.5px; color: var(--muted); }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 34px 30px;
-}
-@media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
-
-/* ---------------- Card ---------------- */
-.card {
-  display: flex; flex-direction: column;
-  opacity: 0; transform: translateY(14px);
-  animation: rise 0.6s cubic-bezier(.2,.7,.2,1) forwards;
-}
-@keyframes rise { to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) {
-  .card { opacity: 1; transform: none; animation: none; }
-}
-
-/* Portada tipográfica */
-.cover {
-  position: relative; aspect-ratio: 3 / 4;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  padding: 22px 22px 20px;
-  display: flex; flex-direction: column;
-  overflow: hidden;
-  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
-}
-.card:hover .cover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 40px -22px rgba(60,40,20,.4);
-}
-.cover .cat {
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
-  font-weight: 600; color: var(--ink-soft);
-}
-.cover .num {
-  position: absolute; top: 18px; right: 22px;
-  font-family: var(--serif); font-size: 15px; font-style: italic;
-  color: var(--ink-soft); opacity: .6;
-}
-.cover .ctitle {
-  margin-top: auto;
-  font-family: var(--serif); font-weight: 400;
-  font-size: 27px; line-height: 1.08; letter-spacing: -0.015em;
-  color: var(--ink); text-wrap: balance;
-}
-.cover .rule { height: 1px; background: rgba(34,30,24,.18); margin: 16px 0 12px; }
-.cover . cfoot { }
-.cover .cfoot {
-  display: flex; align-items: center; justify-content: space-between;
-  font-size: 11.5px; letter-spacing: 0.06em; color: var(--ink-soft);
-}
-.cover .cfoot .dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--accent); display: inline-block; margin-right: 7px;
-}
-.cover .pdf-badge { font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
-
-/* Cuerpo de la tarjeta */
-.card-body { padding: 16px 4px 0; }
-.card-body h3 {
-  font-family: var(--serif); font-weight: 500; font-size: 19px;
-  letter-spacing: -0.01em; line-height: 1.2;
-}
-.card-body p {
-  margin-top: 7px; font-size: 14px; color: var(--ink-soft);
-  text-wrap: pretty; min-height: 2.8em;
-}
-.card-foot {
-  margin-top: 15px; display: flex; align-items: center;
-  justify-content: space-between; gap: 12px;
-}
-.card-meta { font-size: 12.5px; color: var(--muted); letter-spacing: 0.02em; }
-
-/* Botón descargar */
-.btn-dl {
-  appearance: none; border: 1px solid var(--ink);
-  background: var(--ink); color: var(--bg);
-  font-family: var(--sans); font-size: 13.5px; font-weight: 600;
-  padding: 9px 16px; border-radius: 999px; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: background .2s, border-color .2s, transform .12s;
-  white-space: nowrap;
-}
-.btn-dl:hover { background: var(--accent); border-color: var(--accent); }
-.btn-dl:active { transform: scale(.97); }
-.btn-dl svg { width: 14px; height: 14px; }
-
-/* ---------------- Footer ---------------- */
-.site-footer {
-  border-top: 1px solid var(--line);
-  background: var(--bg-soft);
-  padding: 46px 0;
-}
-.site-footer .wrap {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 16px;
-}
-.site-footer .mark { font-family: var(--serif); font-size: 18px; }
-.site-footer .mark em { font-style: italic; color: var(--accent); }
-.site-footer small { color: var(--muted); font-size: 13px; }
-
-/* ---------------- Modal ---------------- */
-.modal-backdrop {
-  position: fixed; inset: 0; z-index: 50;
-  background: rgba(34,28,20,.42); backdrop-filter: blur(5px);
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px;
-  opacity: 0; pointer-events: none; transition: opacity .28s;
-}
-.modal-backdrop.open { opacity: 1; pointer-events: auto; }
-.modal {
-  background: var(--surface); border: 1px solid var(--line);
-  border-radius: 20px; width: 100%; max-width: 430px;
-  padding: 34px 34px 30px;
-  box-shadow: 0 40px 90px -30px rgba(50,30,10,.45);
-  transform: translateY(16px) scale(.98); transition: transform .28s cubic-bezier(.2,.7,.2,1);
-}
-.modal-backdrop.open .modal { transform: none; }
-.modal .eyebrow {
-  font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.16em;
-  color: var(--accent); font-weight: 600; margin-bottom: 12px;
-}
-.modal h3 {
-  font-family: var(--serif); font-weight: 400; font-size: 26px;
-  line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance;
-}
-.modal .modal-sub { margin-top: 12px; font-size: 14.5px; color: var(--ink-soft); }
-.field { margin-top: 18px; }
-.field label {
-  display: block; font-size: 12.5px; font-weight: 600;
-  color: var(--ink-soft); margin-bottom: 6px; letter-spacing: 0.01em;
-}
-.field input {
-  width: 100%; font-family: var(--sans); font-size: 15px;
-  padding: 11px 14px; border: 1px solid var(--line);
-  border-radius: 11px; background: #fff; color: var(--ink);
-  transition: border-color .2s, box-shadow .2s;
-}
-.field input:focus {
-  outline: none; border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-tint);
-}
-.field .err { display: none; color: var(--accent-press); font-size: 12.5px; margin-top: 6px; }
-.field.invalid .err { display: block; }
-.field.invalid input { border-color: var(--accent-press); }
-
-.modal-submit {
-  margin-top: 22px; width: 100%;
-  appearance: none; border: none; cursor: pointer;
-  background: var(--ink); color: var(--bg);
-  font-family: var(--sans); font-weight: 600; font-size: 15px;
-  padding: 13px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center; gap: 9px;
-  transition: background .2s, transform .12s;
-}
-.modal-submit:hover { background: var(--accent); }
-.modal-submit:active { transform: scale(.99); }
-.modal-submit svg { width: 16px; height: 16px; }
-.modal .fineprint {
-  margin-top: 15px; font-size: 12px; color: var(--muted);
-  text-align: center; line-height: 1.5;
-}
-.modal-close {
-  position: absolute; top: 18px; right: 20px;
-  background: none; border: none; font-size: 22px; color: var(--muted);
-  cursor: pointer; line-height: 1; padding: 4px;
-}
-.modal { position: relative; }
-
-/* Estado de éxito */
-.modal-success { text-align: center; display: none; }
-.modal.done .modal-form { display: none; }
-.modal.done .modal-success { display: block; }
-.modal-success .check {
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--accent-tint); color: var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  margin: 4px auto 18px;
-}
-.modal-success .check svg { width: 26px; height: 26px; }
-.modal-success h3 { margin-bottom: 10px; }
-.modal-success p { font-size: 14.5px; color: var(--ink-soft); }
-.modal-success a.again {
-  display: inline-block; margin-top: 18px; font-size: 13.5px;
-  color: var(--accent); font-weight: 600; text-decoration: none;
-  border-bottom: 1px solid var(--accent-tint); cursor: pointer;
-}
-
-/* Toast */
-.toast {
-  position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(20px);
-  background: var(--ink); color: var(--bg); font-size: 14px;
-  padding: 12px 20px; border-radius: 999px; z-index: 60;
-  opacity: 0; transition: opacity .25s, transform .25s;
-  display: flex; align-items: center; gap: 9px;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast svg { width: 15px; height: 15px; }
+const DOCUMENTOS = [
+  {
+    titulo: "Tu mañana sin prisa",
+    categoria: "Guía",
+    descripcion: "Una rutina simple para empezar el día con calma y enfoque, sin sentir que corrés.",
+    archivo: "docs/rutina-manana.pdf",
+    paginas: "10 páginas",
+    tono: 3,
+  },
+  {
+    titulo: "Organizá tu semana",
+    categoria: "Guía",
+    descripcion: "Un método liviano para planificar 7 días sin agendas eternas ni culpa.",
+    archivo: "docs/organizar-semana.pdf",
+    paginas: "14 páginas",
+    tono: 1,
+  },
+  {
+    titulo: "Finanzas personales: primeros pasos",
+    categoria: "Ebook",
+    descripcion: "Lo mínimo para ordenar tus gastos y empezar a ahorrar, explicado fácil.",
+    archivo: "docs/finanzas-primeros-pasos.pdf",
+    paginas: "22 páginas",
+    tono: 4,
+  },
+  {
+    titulo: "Escribí tu primer ebook",
+    categoria: "Guía",
+    descripcion: "De la idea al PDF terminado: estructura, ritmo y cómo no abandonar a mitad.",
+    archivo: "docs/primer-ebook.pdf",
+    paginas: "18 páginas",
+    tono: 2,
+  },
+  {
+    titulo: "Descansar mejor",
+    categoria: "Guía",
+    descripcion: "Pequeños cambios de hábitos para dormir más profundo y despertar con energía.",
+    archivo: "docs/descanso-bienestar.pdf",
+    paginas: "9 páginas",
+    tono: 3,
+  },
+  {
+    titulo: "Hábitos que duran",
+    categoria: "Ebook",
+    descripcion: "Por qué los buenos propósitos se caen y cómo armar hábitos que se sostienen.",
+    archivo: "docs/habitos-claros.pdf",
+    paginas: "16 páginas",
+    tono: 1,
+  },
+];
