@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giuliana Lencina — Recursos gratuitos</title>
+  <meta name="description" content="Biblioteca de guías y ebooks gratuitos para descargar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header" data-screen-label="Header">
+    <div class="wrap">
+      <div class="brand">
+        <span class="mark">Giuliana <em>Lencina</em></span>
+        <span class="sub">recursos gratuitos</span>
+      </div>
+      <span class="header-tag">Descarga libre</span>
+    </div>
+  </header>
+
+  <!-- ============ Hero ============ -->
+  <section class="hero" data-screen-label="Hero">
+    <div class="wrap">
+      <p class="eyebrow">Biblioteca</p>
+      <h1>Guías y ebooks <em>gratuitos</em> para descargar.</h1>
+      <p>Material que voy armando con cariño para compartir. Elegí el que te sirva, dejá tu email y descargalo al instante — sin vueltas.</p>
+      <div class="meta">
+        <span><b id="hero-count">—</b> documentos disponibles</span>
+        <span>Formato <b>PDF</b></span>
+        <span>Siempre <b>gratis</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Biblioteca ============ -->
+  <main class="library" data-screen-label="Biblioteca">
+    <div class="wrap">
+      <div class="library-bar">
+        <h2>Todos los recursos</h2>
+        <span class="count" id="count">—</span>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="mark">Giuliana <em>Lencina</em></span>
+      <small>Hecho para compartir · © <span id="year"></span></small>
+    </div>
+  </footer>
+
+  <!-- ============ Modal de descarga ============ -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar">&times;</button>
+
+      <!-- Formulario -->
+      <div class="modal-form">
+        <p class="eyebrow">Descarga gratuita</p>
+        <h3 id="modal-title">Descargá tu documento</h3>
+        <p class="modal-sub">Dejanos tu email y la descarga empieza al toque. Lo usamos solo para avisarte cuando suba material nuevo.</p>
+
+        <form id="subscribe-form" novalidate>
+          <div class="field">
+            <label for="f-name">Nombre <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+            <input type="text" id="f-name" autocomplete="given-name" placeholder="Tu nombre" />
+          </div>
+          <div class="field" id="field-email">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" autocomplete="email" placeholder="tu@email.com" required />
+            <span class="err">Ingresá un email válido.</span>
+          </div>
+          <button type="submit" class="modal-submit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Descargar PDF
+          </button>
+          <p class="fineprint">Nada de spam. Podés darte de baja cuando quieras.</p>
+        </form>
+      </div>
+
+      <!-- Éxito -->
+      <div class="modal-success">
+        <div class="check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+        </div>
+        <h3>¡Listo! Tu descarga empezó.</h3>
+        <p>Si no se descargó solo, revisá la carpeta de descargas o tocá de nuevo el botón.</p>
+        <a class="again" id="again">Cerrar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Toast ============ -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+    <span></span>
+  </div>
+
+  <script src="documentos.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // sincroniza el contador del hero
+    (function(){ var c = (typeof DOCUMENTOS!=="undefined") ? DOCUMENTOS.length : 0;
+      document.getElementById("hero-count").textContent = c; })();
+  </script>
+</body>
+</html>
